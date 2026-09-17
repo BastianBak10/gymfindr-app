@@ -1,14 +1,6 @@
-// Fiktive gym-data for København. Hvert gym har en afstand (km fra brugeren - fast
-// værdi her, men kunne i en rigtig app komme fra brugerens position), en månedspris
-// i kroner, en rating og en liste af faciliteter, som HomeScreen og FilterScreen
-// bruger til sortering/filtrering.
-//
-// signupFee, adminFee og bindingMonths er inspireret af rigtige danske fitnesskæders
-// prisstruktur (fx SATS og PureGym) - de fleste kæder har et oprettelsesgebyr og et
-// mindre administrationsgebyr oveni selve månedsprisen, og nogle kræver en bindingsperiode.
-// "offer" er et valgfrit kampagnetilbud - null betyder at gymmet ikke har et tilbud lige nu.
-//
-// I en rigtig app ville denne liste typisk komme fra et API eller en database i stedet.
+// Fiktive gym-data for København. Bruges af HomeScreen (liste + sortering/filtrering)
+// og GymDetailScreen (gebyrer, tilbud og "website" til den fremtidige Sign up-funktion).
+// I en rigtig app ville denne liste komme fra et API eller en database i stedet.
 export const GYMS = [
   {
     id: '1',
@@ -22,6 +14,7 @@ export const GYMS = [
     adminFee: 29,
     bindingMonths: 0,
     offer: 'Tilmeld dig i dag og få resten af måneden for 1 kr!',
+    website: 'https://www.fitnessworld.dk/?ref=gymfindr',
   },
   {
     id: '2',
@@ -35,6 +28,7 @@ export const GYMS = [
     adminFee: 39,
     bindingMonths: 6,
     offer: null,
+    website: 'https://www.sats.dk/?ref=gymfindr',
   },
   {
     id: '3',
@@ -48,6 +42,7 @@ export const GYMS = [
     adminFee: 19,
     bindingMonths: 0,
     offer: 'Ingen oprettelsesgebyr, hvis du tilmelder dig denne uge!',
+    website: 'https://www.freshfitness.dk/?ref=gymfindr',
   },
   {
     id: '4',
@@ -61,6 +56,7 @@ export const GYMS = [
     adminFee: 15,
     bindingMonths: 3,
     offer: null,
+    website: 'https://www.loopfitness.dk/?ref=gymfindr',
   },
   {
     id: '5',
@@ -74,6 +70,7 @@ export const GYMS = [
     adminFee: 25,
     bindingMonths: 0,
     offer: 'Første måned gratis, når du opretter dig online.',
+    website: 'https://www.puregym.dk/?ref=gymfindr',
   },
   {
     id: '6',
@@ -87,6 +84,7 @@ export const GYMS = [
     adminFee: 39,
     bindingMonths: 6,
     offer: 'Tilmeld dig denne uge og få en gratis PT-time.',
+    website: 'https://www.sats.dk/?ref=gymfindr',
   },
 ];
 

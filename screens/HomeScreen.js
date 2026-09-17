@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, FlatList, Pressable } from 'react-native';
 import { styles } from '../styles/styles';
 import { GYMS } from '../data/gyms';
 
@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation, route }) {
   // Knap-krav: hvert gym-kort er tryk-bart og navigerer til detalje-siden.
   // Vi sender hele "item" (gym-objektet) med som parameter, så GymDetailScreen kan bruge det.
   const renderGym = ({ item }) => (
-    <TouchableOpacity
+    <Pressable
       style={styles.card}
       onPress={() => navigation.navigate('GymDetail', { gym: item })}
     >
@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation, route }) {
           </View>
         ))}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 
   return (

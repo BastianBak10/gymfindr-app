@@ -30,12 +30,6 @@ export const styles = StyleSheet.create({
     color: colors.subtext,
     marginBottom: 16,
   },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
 
   // --- Gym-kortet i listen på HomeScreen ---
   card: {

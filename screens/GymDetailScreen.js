@@ -1,30 +1,10 @@
-import { useState } from 'react';
-import { View, Text, Pressable, Alert, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 
 // GymDetailScreen viser detaljer for ét bestemt gym.
 // Gym-objektet kommer fra HomeScreen via navigation.navigate('GymDetail', { gym: item }).
 export default function GymDetailScreen({ route }) {
   const { gym } = route.params;
-
-  // Holder styr på om brugeren allerede har tilmeldt sig dette gym,
-  // så vi kan vise en anden knap-tekst og undgå dobbelt-tilmelding.
-  const [isSignedUp, setIsSignedUp] = useState(false);
-
-  // Funktion knyttet til "Sign up"-knappen. I en rigtig app ville dette sende
-  // en tilmeldings-forespørgsel til en server - her viser vi bare en bekræftelse.
-  const signUp = () => {
-    setIsSignedUp(true);
-    Alert.alert(
-      'Du er nu tilmeldt!',
-      `Velkommen til ${gym.name}. Du kan se dine gebyrer og bindingsperiode herunder.`
-    );
-  };
-
-  // Funktion knyttet til "Book a tour"-knappen - viser en simpel alert-boks.
-  const bookTour = () => {
-    Alert.alert('Tour requested', `We’ll let ${gym.name} know you’re interested!`);
-  };
 
   return (
     <ScrollView style={styles.screen}>
@@ -71,15 +51,11 @@ export default function GymDetailScreen({ route }) {
         </Text>
       </View>
 
-      {/* Knap-krav: knap med funktion - tilmelder brugeren (ikke navigation) */}
-      <Pressable style={styles.primaryButton} onPress={signUp} disabled={isSignedUp}>
-        <Text style={styles.primaryButtonText}>
-          {isSignedUp ? 'Tilmeldt ✓' : 'Sign up'}
-        </Text>
-      </Pressable>
-
-      <Pressable style={styles.secondaryButton} onPress={bookTour}>
-        <Text style={styles.secondaryButtonText}>Book a tour</Text>
+      {/* Low-fi prototype: knappen har endnu ingen funktion. Idéen bag den er, at den i en
+          rigtig version skal åbne gymmets hjemmeside (se "website" i data/gyms.js) via et
+          affiliate-link, så GymFindr tjener en kommission pr. tilmelding. */}
+      <Pressable style={styles.primaryButton}>
+        <Text style={styles.primaryButtonText}>Sign up</Text>
       </Pressable>
     </ScrollView>
   );

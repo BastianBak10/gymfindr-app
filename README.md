@@ -10,7 +10,7 @@ A React Native (Expo) app for finding fitness gyms near you, and sorting/filteri
 
 - **Home** — list of gyms, sorted/filtered by your chosen criteria
 - **Filters & Sort** — choose sort order (distance, price, rating) and toggle which facilities matter to you
-- **Gym Details** — full facility list, rating, current offer (if any), a fee breakdown (signup fee, admin fee, binding period), and buttons to sign up or book a tour
+- **Gym Details** — full facility list, rating, current offer (if any), a fee breakdown (signup fee, admin fee, binding period), and a "Sign up" button that opens the gym's own website (affiliate link — GymFindr's business model is a referral commission per signup)
 
 ## Running the app
 
