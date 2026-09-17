@@ -2,6 +2,12 @@
 // værdi her, men kunne i en rigtig app komme fra brugerens position), en månedspris
 // i kroner, en rating og en liste af faciliteter, som HomeScreen og FilterScreen
 // bruger til sortering/filtrering.
+//
+// signupFee, adminFee og bindingMonths er inspireret af rigtige danske fitnesskæders
+// prisstruktur (fx SATS og PureGym) - de fleste kæder har et oprettelsesgebyr og et
+// mindre administrationsgebyr oveni selve månedsprisen, og nogle kræver en bindingsperiode.
+// "offer" er et valgfrit kampagnetilbud - null betyder at gymmet ikke har et tilbud lige nu.
+//
 // I en rigtig app ville denne liste typisk komme fra et API eller en database i stedet.
 export const GYMS = [
   {
@@ -12,6 +18,10 @@ export const GYMS = [
     price: 199,
     rating: 4.2,
     facilities: ['Pool', 'Sauna', 'Group classes', '24/7 access'],
+    signupFee: 199,
+    adminFee: 29,
+    bindingMonths: 0,
+    offer: 'Tilmeld dig i dag og få resten af måneden for 1 kr!',
   },
   {
     id: '2',
@@ -21,6 +31,10 @@ export const GYMS = [
     price: 349,
     rating: 4.6,
     facilities: ['Pool', 'Sauna', 'Group classes', 'Personal training'],
+    signupFee: 299,
+    adminFee: 39,
+    bindingMonths: 6,
+    offer: null,
   },
   {
     id: '3',
@@ -30,6 +44,10 @@ export const GYMS = [
     price: 149,
     rating: 3.9,
     facilities: ['24/7 access', 'Group classes'],
+    signupFee: 0,
+    adminFee: 19,
+    bindingMonths: 0,
+    offer: 'Ingen oprettelsesgebyr, hvis du tilmelder dig denne uge!',
   },
   {
     id: '4',
@@ -39,6 +57,10 @@ export const GYMS = [
     price: 179,
     rating: 4.0,
     facilities: ['24/7 access', 'Personal training'],
+    signupFee: 99,
+    adminFee: 15,
+    bindingMonths: 3,
+    offer: null,
   },
   {
     id: '5',
@@ -48,6 +70,10 @@ export const GYMS = [
     price: 129,
     rating: 3.7,
     facilities: ['24/7 access'],
+    signupFee: 0,
+    adminFee: 25,
+    bindingMonths: 0,
+    offer: 'Første måned gratis, når du opretter dig online.',
   },
   {
     id: '6',
@@ -57,6 +83,10 @@ export const GYMS = [
     price: 399,
     rating: 4.7,
     facilities: ['Pool', 'Sauna', 'Group classes', 'Personal training', '24/7 access'],
+    signupFee: 299,
+    adminFee: 39,
+    bindingMonths: 6,
+    offer: 'Tilmeld dig denne uge og få en gratis PT-time.',
   },
 ];
 

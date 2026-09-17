@@ -39,6 +39,8 @@ export default function HomeScreen({ navigation, route }) {
     >
       <Text style={styles.cardTitle}>{item.name}</Text>
       <Text style={styles.cardAddress}>{item.address}</Text>
+      {/* Lille badge så man kan se tilbud direkte i listen, uden at åbne detalje-siden */}
+      {item.offer && <Text style={styles.offerBadge}>🔥 Offer available</Text>}
       <View style={styles.cardRow}>
         <Text style={styles.price}>{item.price} kr/md</Text>
         <Text style={styles.distance}>{item.distanceKm.toFixed(1)} km away</Text>

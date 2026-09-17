@@ -10,6 +10,7 @@ export const colors = {
   text: '#F8FAFC',
   subtext: '#94A3B8',
   border: '#334155',
+  accent: '#F59E0B',
 };
 
 export const styles = StyleSheet.create({
@@ -114,6 +115,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderWidth: 1,
     borderColor: colors.border,
+    marginTop: 12,
   },
   secondaryButtonText: {
     color: colors.text,
@@ -149,5 +151,38 @@ export const styles = StyleSheet.create({
     color: colors.subtext,
     textAlign: 'center',
     marginTop: 40,
+  },
+  offerBadge: {
+    color: colors.accent,
+    fontSize: 12,
+    fontWeight: '700',
+    marginTop: 4,
+  },
+  offerBanner: {
+    backgroundColor: colors.accent,
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 16,
+  },
+  offerText: {
+    color: colors.background,
+    fontWeight: '700',
+    fontSize: 14,
+  },
+  feeRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  feeLabel: {
+    color: colors.subtext,
+    fontSize: 14,
+  },
+  feeValue: {
+    color: colors.text,
+    fontWeight: '600',
+    fontSize: 14,
   },
 });
