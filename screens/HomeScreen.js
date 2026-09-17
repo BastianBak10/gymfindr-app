@@ -60,6 +60,7 @@ export default function HomeScreen({ navigation, route }) {
     return list;
   }, [userLocation, sortBy, selectedFacilities]);
 
+  // Knap-krav: hvert gym-kort er tryk-bart og navigerer til detalje-siden
   const renderGym = ({ item }) => (
     <TouchableOpacity
       style={styles.card}
@@ -90,6 +91,7 @@ export default function HomeScreen({ navigation, route }) {
         {locationError ?? 'Gyms near you, sorted and filtered your way.'}
       </Text>
 
+      {/* Knap-krav: knap med funktion - navigerer til FilterScreen */}
       <Pressable
         style={styles.secondaryButton}
         onPress={() => navigation.navigate('Filters', { sortBy, selectedFacilities })}
@@ -100,6 +102,7 @@ export default function HomeScreen({ navigation, route }) {
         </Text>
       </Pressable>
 
+      {/* Liste-krav: FlatList viser alle gyms som en scrollbar liste */}
       <FlatList
         data={gyms}
         keyExtractor={(item) => item.id}

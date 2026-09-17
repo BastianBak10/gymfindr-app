@@ -65,6 +65,7 @@ export default function FilterScreen({ navigation, route }) {
         })}
       </View>
 
+      {/* Knap-krav: sender valgt sortering/filter tilbage til HomeScreen via navigation */}
       <Pressable style={styles.primaryButton} onPress={applyFilters}>
         <Text style={styles.primaryButtonText}>Apply</Text>
       </Pressable>

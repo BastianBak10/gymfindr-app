@@ -1,3 +1,5 @@
+// Styling-krav: al styling ligger samlet i denne separate fil
+// og importeres ind i App.js og de tre screens (Home, Filter, GymDetail).
 import { StyleSheet } from 'react-native';
 
 export const colors = {

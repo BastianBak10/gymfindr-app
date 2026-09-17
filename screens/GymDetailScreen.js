@@ -26,6 +26,7 @@ export default function GymDetailScreen({ route }) {
       <Text style={styles.sectionLabel}>Rating</Text>
       <Text style={styles.subtitle}>{'★'.repeat(Math.round(gym.rating))} ({gym.rating})</Text>
 
+      {/* Knap-krav: knap med funktion - viser en alert (ikke navigation) */}
       <Pressable style={styles.primaryButton} onPress={bookTour}>
         <Text style={styles.primaryButtonText}>Book a tour</Text>
       </Pressable>
