@@ -1,66 +1,37 @@
-import { useEffect, useMemo, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Pressable } from 'react-native';
-import * as Location from 'expo-location';
 import { styles } from '../styles/styles';
 import { GYMS } from '../data/gyms';
-import { getDistanceKm } from '../utils/distance';
 
 const DEFAULT_SORT = 'distance';
 
+// HomeScreen viser listen af gyms. navigation bruges til at skifte screen,
+// route giver adgang til de parametre FilterScreen har sendt tilbage (sortBy/selectedFacilities).
 export default function HomeScreen({ navigation, route }) {
-  const [userLocation, setUserLocation] = useState(null);
-  const [locationError, setLocationError] = useState(null);
-
+  // Sorterings-/filter-valg kommer fra FilterScreen via navigation-parametre.
+  // "?? DEFAULT_SORT" bruges som fallback, hvis man ikke har været på FilterScreen endnu.
   const sortBy = route.params?.sortBy ?? DEFAULT_SORT;
   const selectedFacilities = route.params?.selectedFacilities ?? [];
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setLocationError('Location permission denied — showing gyms without distance.');
-        return;
-      }
-      const position = await Location.getCurrentPositionAsync({});
-      setUserLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    })();
-  }, []);
+  // Laver en kopi af GYMS, så vi ikke sorterer/ændrer i det oprindelige array.
+  let gyms = [...GYMS];
 
-  const gyms = useMemo(() => {
-    let list = GYMS.map((gym) => ({
-      ...gym,
-      distanceKm: userLocation
-        ? getDistanceKm(
-            userLocation.latitude,
-            userLocation.longitude,
-            gym.latitude,
-            gym.longitude
-          )
-        : null,
-    }));
+  // Behold kun gyms der har ALLE de valgte faciliteter.
+  if (selectedFacilities.length > 0) {
+    gyms = gyms.filter((gym) =>
+      selectedFacilities.every((f) => gym.facilities.includes(f))
+    );
+  }
 
-    if (selectedFacilities.length > 0) {
-      list = list.filter((gym) =>
-        selectedFacilities.every((f) => gym.facilities.includes(f))
-      );
-    }
+  // Sortér efter det valgte kriterie (pris, rating eller afstand).
+  gyms.sort((a, b) => {
+    if (sortBy === 'price') return a.price - b.price;
+    if (sortBy === 'rating') return b.rating - a.rating;
+    return a.distanceKm - b.distanceKm;
+  });
 
-    list.sort((a, b) => {
-      if (sortBy === 'price') return a.price - b.price;
-      if (sortBy === 'rating') return b.rating - a.rating;
-      if (sortBy === 'distance' && a.distanceKm != null && b.distanceKm != null) {
-        return a.distanceKm - b.distanceKm;
-      }
-      return 0;
-    });
-
-    return list;
-  }, [userLocation, sortBy, selectedFacilities]);
-
-  // Knap-krav: hvert gym-kort er tryk-bart og navigerer til detalje-siden
+  // renderGym bestemmer hvordan ét enkelt gym skal tegnes i FlatList'en.
+  // Knap-krav: hvert gym-kort er tryk-bart og navigerer til detalje-siden.
+  // Vi sender hele "item" (gym-objektet) med som parameter, så GymDetailScreen kan bruge det.
   const renderGym = ({ item }) => (
     <TouchableOpacity
       style={styles.card}
@@ -70,9 +41,7 @@ export default function HomeScreen({ navigation, route }) {
       <Text style={styles.cardAddress}>{item.address}</Text>
       <View style={styles.cardRow}>
         <Text style={styles.price}>{item.price} kr/md</Text>
-        <Text style={styles.distance}>
-          {item.distanceKm != null ? `${item.distanceKm.toFixed(1)} km away` : '★ ' + item.rating}
-        </Text>
+        <Text style={styles.distance}>{item.distanceKm.toFixed(1)} km away</Text>
       </View>
       <View style={styles.facilityPillRow}>
         {item.facilities.map((f) => (
@@ -87,9 +56,7 @@ export default function HomeScreen({ navigation, route }) {
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>GymFindr</Text>
-      <Text style={styles.subtitle}>
-        {locationError ?? 'Gyms near you, sorted and filtered your way.'}
-      </Text>
+      <Text style={styles.subtitle}>Gyms near you, sorted and filtered your way.</Text>
 
       {/* Knap-krav: knap med funktion - navigerer til FilterScreen */}
       <Pressable
@@ -102,7 +69,11 @@ export default function HomeScreen({ navigation, route }) {
         </Text>
       </Pressable>
 
-      {/* Liste-krav: FlatList viser alle gyms som en scrollbar liste */}
+      {/* Liste-krav: FlatList viser alle gyms som en scrollbar liste.
+          - data: selve arrayet der skal vises
+          - keyExtractor: giver React en unik nøgle pr. element (bedre performance)
+          - renderItem: funktionen der tegner hvert element (renderGym ovenfor)
+          - ListEmptyComponent: vises i stedet for listen, hvis "gyms" er tom */}
       <FlatList
         data={gyms}
         keyExtractor={(item) => item.id}

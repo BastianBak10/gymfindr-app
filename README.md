@@ -8,7 +8,7 @@ A React Native (Expo) app for finding fitness gyms near you, and sorting/filteri
 
 ## Screens
 
-- **Home** — list of gyms, sorted/filtered by your chosen criteria, using your live location to show distance
+- **Home** — list of gyms, sorted/filtered by your chosen criteria
 - **Filters & Sort** — choose sort order (distance, price, rating) and toggle which facilities matter to you
 - **Gym Details** — full facility list, rating, and a "Book a tour" action for a selected gym
 
@@ -19,10 +19,9 @@ npm install
 npx expo start
 ```
 
-Scan the QR code with Expo Go (iOS/Android). Grant location access when prompted to see distance-based sorting.
+Scan the QR code with Expo Go (iOS/Android).
 
 ## Tech
 
 - Expo / React Native
 - React Navigation (native stack)
-- expo-location for device geolocation

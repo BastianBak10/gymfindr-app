@@ -6,13 +6,19 @@ import HomeScreen from './screens/HomeScreen';
 import FilterScreen from './screens/FilterScreen';
 import GymDetailScreen from './screens/GymDetailScreen';
 
+// Opretter selve navigations-"stakken" - den holder styr på hvilken
+// screen der vises, og hvordan man kan gå frem/tilbage mellem dem.
 const Stack = createNativeStackNavigator();
 
+// App.js er indgangen til hele appen (kaldes fra index.js).
 export default function App() {
   return (
+    // NavigationContainer skal ligge yderst - den styrer navigations-tilstanden
+    // for hele appen (fx hvilken screen der er aktiv lige nu).
     <NavigationContainer>
       <StatusBar style="light" />
-      {/* Krav: minimum 3 screens med navigation imellem dem */}
+      {/* Krav: minimum 3 screens med navigation imellem dem.
+          screenOptions sætter fælles udseende (farver) for headeren på alle screens. */}
       <Stack.Navigator
         screenOptions={{
           headerStyle: { backgroundColor: colors.card },
