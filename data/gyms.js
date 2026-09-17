@@ -1,0 +1,72 @@
+// Mock gym data around Copenhagen. Each gym has a location, monthly price (DKK)
+// and a list of facilities used for filtering/sorting in the app.
+export const GYMS = [
+  {
+    id: '1',
+    name: 'Fitness World Frederiksberg',
+    address: 'Falkoner Allé 20, Frederiksberg',
+    latitude: 55.6811,
+    longitude: 12.5342,
+    price: 199,
+    rating: 4.2,
+    facilities: ['Pool', 'Sauna', 'Group classes', '24/7 access'],
+  },
+  {
+    id: '2',
+    name: 'SATS Vesterport',
+    address: 'Vesterbrogade 3, København V',
+    latitude: 55.6737,
+    longitude: 12.5646,
+    price: 349,
+    rating: 4.6,
+    facilities: ['Pool', 'Sauna', 'Group classes', 'Personal training'],
+  },
+  {
+    id: '3',
+    name: 'Fresh Fitness Nørrebro',
+    address: 'Nørrebrogade 45, København N',
+    latitude: 55.6900,
+    longitude: 12.5530,
+    price: 149,
+    rating: 3.9,
+    facilities: ['24/7 access', 'Group classes'],
+  },
+  {
+    id: '4',
+    name: 'Loop Fitness City',
+    address: 'Frederiksberggade 22, København K',
+    latitude: 55.6789,
+    longitude: 12.5720,
+    price: 179,
+    rating: 4.0,
+    facilities: ['24/7 access', 'Personal training'],
+  },
+  {
+    id: '5',
+    name: 'PureGym Amager',
+    address: 'Amagerbrogade 100, København S',
+    latitude: 55.6580,
+    longitude: 12.5960,
+    price: 129,
+    rating: 3.7,
+    facilities: ['24/7 access'],
+  },
+  {
+    id: '6',
+    name: 'SATS Østerbro',
+    address: 'Østerbrogade 62, København Ø',
+    latitude: 55.7040,
+    longitude: 12.5760,
+    price: 399,
+    rating: 4.7,
+    facilities: ['Pool', 'Sauna', 'Group classes', 'Personal training', '24/7 access'],
+  },
+];
+
+export const ALL_FACILITIES = [
+  'Pool',
+  'Sauna',
+  'Group classes',
+  'Personal training',
+  '24/7 access',
+];
