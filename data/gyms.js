@@ -1,6 +1,4 @@
-// Fiktive gym-data for København. Bruges af HomeScreen (liste + sortering/filtrering)
-// og GymDetailScreen (gebyrer, tilbud og "website" til den fremtidige Sign up-funktion).
-// I en rigtig app ville denne liste komme fra et API eller en database i stedet.
+// Fiktive gym-data for København. I en rigtig app ville de komme fra et API eller en database.
 export const GYMS = [
   {
     id: '1',
@@ -88,8 +86,7 @@ export const GYMS = [
   },
 ];
 
-// Samlet liste af alle mulige faciliteter - bruges i FilterScreen til at tegne
-// alle facilitets-pillerne, uden at skulle liste dem manuelt to steder.
+// Alle mulige faciliteter. Bruges til filter-knapperne i FilterScreen.
 export const ALL_FACILITIES = [
   'Pool',
   'Sauna',

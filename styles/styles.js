@@ -1,8 +1,7 @@
-// Styling-krav: al styling ligger samlet i denne separate fil
-// og importeres ind i App.js og de tre screens (Home, Filter, GymDetail).
+// Al styling ligger samlet her og bruges af App.js og de tre screens.
 import { StyleSheet } from 'react-native';
 
-// Farvepalette samlet ét sted, så hele appen bruger de samme farver konsekvent.
+// Farver samlet ét sted, så hele appen bruger de samme.
 export const colors = {
   background: '#0F172A',
   card: '#1E293B',
@@ -31,7 +30,10 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  // --- Gym-kortet i listen på HomeScreen ---
+  // --- Listen på HomeScreen ---
+  list: {
+    marginTop: 16,
+  },
   card: {
     backgroundColor: colors.card,
     borderRadius: 12,
@@ -89,7 +91,7 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
-  // --- Knapper (bruges på tværs af alle tre screens) ---
+  // --- Knapper ---
   primaryButton: {
     backgroundColor: colors.primary,
     borderRadius: 10,
@@ -129,7 +131,7 @@ export const styles = StyleSheet.create({
     gap: 10,
   },
 
-  // --- GymDetailScreen ---
+  // --- GymDetailScreen, tilbud og tom liste ---
   detailAddress: {
     fontSize: 15,
     color: colors.subtext,

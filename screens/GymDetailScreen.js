@@ -1,8 +1,15 @@
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, Linking, Alert } from 'react-native';
 import { styles } from '../styles/styles';
 
-// GymDetailScreen viser detaljer for ét bestemt gym.
-// Gym-objektet kommer fra HomeScreen via navigation.navigate('GymDetail', { gym: item }).
+// Åbner gymmets hjemmeside og viser en fejl, hvis linket ikke kan åbnes
+// (fx manglende browser-app), i stedet for at fejle stille.
+function openGymWebsite(url) {
+  Linking.openURL(url).catch((error) => {
+    Alert.alert('Kunne ikke åbne linket', error.message);
+  });
+}
+
+// Viser detaljer for ét gym, som Home sender med via route.params.
 export default function GymDetailScreen({ route }) {
   const { gym } = route.params;
 
@@ -12,7 +19,7 @@ export default function GymDetailScreen({ route }) {
       <Text style={styles.detailAddress}>{gym.address}</Text>
       <Text style={styles.detailPrice}>{gym.price} kr/md</Text>
 
-      {/* Tilbuds-banner - vises kun hvis gymmet har et aktivt kampagnetilbud (gym.offer) */}
+      {/* Vises kun, hvis gymmet har et tilbud */}
       {gym.offer && (
         <View style={styles.offerBanner}>
           <Text style={styles.offerText}>🔥 {gym.offer}</Text>
@@ -28,11 +35,10 @@ export default function GymDetailScreen({ route }) {
         ))}
       </View>
 
-      {/* '★'.repeat(...) tegner ét stjerne-tegn pr. helt point i ratingen (fx 4.6 -> ★★★★★) */}
       <Text style={styles.sectionLabel}>Rating</Text>
       <Text style={styles.subtitle}>{'★'.repeat(Math.round(gym.rating))} ({gym.rating})</Text>
 
-      {/* Gebyr-oversigt - viser de "skjulte" ekstra gebyrer udover selve månedsprisen */}
+      {/* Gebyrer og binding samlet, så man ser de ekstra udgifter ud over månedsprisen */}
       <Text style={styles.sectionLabel}>Fees & binding</Text>
       <View style={styles.feeRow}>
         <Text style={styles.feeLabel}>Oprettelsesgebyr</Text>
@@ -51,10 +57,8 @@ export default function GymDetailScreen({ route }) {
         </Text>
       </View>
 
-      {/* Low-fi prototype: knappen har endnu ingen funktion. Idéen bag den er, at den i en
-          rigtig version skal åbne gymmets hjemmeside (se "website" i data/gyms.js) via et
-          affiliate-link, så GymFindr tjener en kommission pr. tilmelding. */}
-      <Pressable style={styles.primaryButton}>
+      {/* Knap: åbner gymmets hjemmeside (affiliate-link, hvor GymFindr tjener en kommission) */}
+      <Pressable style={styles.primaryButton} onPress={() => openGymWebsite(gym.website)}>
         <Text style={styles.primaryButtonText}>Sign up</Text>
       </Pressable>
     </ScrollView>
