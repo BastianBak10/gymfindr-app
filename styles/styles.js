@@ -1,4 +1,4 @@
-// Al styling ligger samlet her og bruges af App.js og de tre screens.
+// Al styling ligger samlet her og bruges af App.js og de fem screens.
 import { StyleSheet } from 'react-native';
 
 // Farver samlet ét sted, så hele appen bruger de samme.
@@ -180,5 +180,124 @@ export const styles = StyleSheet.create({
     color: colors.text,
     fontWeight: '600',
     fontSize: 14,
+  },
+
+  // --- Fælles hjælpe-styles ---
+  flex: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  centerText: {
+    textAlign: 'center',
+  },
+  lastButton: {
+    marginBottom: 40,
+  },
+  buttonDisabled: {
+    opacity: 0.5,
+  },
+
+  // --- HomeScreen: placering og knaprække ---
+  locationText: {
+    fontSize: 12,
+    color: colors.subtext,
+    marginTop: -8,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  buttonRowItem: {
+    flex: 1,
+    alignItems: 'center',
+  },
+
+  // --- MapScreen ---
+  mapScreen: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
+  mapHint: {
+    position: 'absolute',
+    bottom: 24,
+    left: 16,
+    right: 16,
+    backgroundColor: colors.card,
+    borderRadius: 10,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  mapHintText: {
+    color: colors.text,
+    fontSize: 13,
+    textAlign: 'center',
+  },
+
+  // --- AiAssistantScreen ---
+  chatContent: {
+    paddingBottom: 24,
+  },
+  bubble: {
+    borderRadius: 14,
+    padding: 12,
+    marginTop: 12,
+    maxWidth: '90%',
+  },
+  bubbleUser: {
+    backgroundColor: colors.primary,
+    alignSelf: 'flex-end',
+  },
+  bubbleAi: {
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.border,
+    alignSelf: 'flex-start',
+  },
+  bubbleText: {
+    color: colors.text,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  bubbleUserText: {
+    color: colors.background,
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  loader: {
+    marginTop: 16,
+  },
+  errorText: {
+    color: '#F87171',
+    marginTop: 16,
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    gap: 8,
+    padding: 12,
+    paddingBottom: 28,
+    backgroundColor: colors.card,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  textInput: {
+    flex: 1,
+    maxHeight: 100,
+    backgroundColor: colors.background,
+    color: colors.text,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  sendButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
 });

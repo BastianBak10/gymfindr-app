@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { styles } from '../styles/styles';
 import { ALL_FACILITIES } from '../data/gyms';
+import { saveFilters, clearFilters, DEFAULT_FILTERS } from '../services/storage';
 
 const SORT_OPTIONS = [
   { key: 'distance', label: 'Distance' },
@@ -9,13 +10,12 @@ const SORT_OPTIONS = [
   { key: 'rating', label: 'Rating' },
 ];
 
-// Lader brugeren vælge sortering og faciliteter og sender valget tilbage til Home.
+// Lader brugeren vælge sortering og faciliteter, gemmer valget og sender det tilbage til Home.
 export default function FilterScreen({ navigation, route }) {
   // Starter med de valg, Home sendte med.
-  const [sortBy, setSortBy] = useState(route.params?.sortBy ?? 'distance');
-  const [selectedFacilities, setSelectedFacilities] = useState(
-    route.params?.selectedFacilities ?? []
-  );
+  const initial = route.params?.filters ?? DEFAULT_FILTERS;
+  const [sortBy, setSortBy] = useState(initial.sortBy);
+  const [selectedFacilities, setSelectedFacilities] = useState(initial.selectedFacilities);
 
   // Vælger eller fravælger en facilitet.
   const toggleFacility = (facility) => {
@@ -24,15 +24,25 @@ export default function FilterScreen({ navigation, route }) {
     );
   };
 
-  // Knap: går tilbage til Home og sender valgene med.
-  const applyFilters = () => {
-    navigation.navigate('Home', { sortBy, selectedFacilities });
+  // Knap: gemmer valgene på telefonen (så de huskes, når appen lukkes) og går tilbage til Home.
+  const applyFilters = async () => {
+    const filters = { sortBy, selectedFacilities };
+    await saveFilters(filters);
+    navigation.popTo('Home', { filters });
+  };
+
+  // Knap: sletter de gemte valg og går tilbage til Home med standardvalgene.
+  const resetFilters = async () => {
+    await clearFilters();
+    navigation.popTo('Home', { filters: DEFAULT_FILTERS });
   };
 
   return (
     <ScrollView style={styles.screen}>
       <Text style={styles.title}>Filters & Sort</Text>
-      <Text style={styles.subtitle}>Choose how to sort gyms and which facilities matter to you.</Text>
+      <Text style={styles.subtitle}>
+        Choose how to sort gyms and which facilities matter to you. Your choices are saved.
+      </Text>
 
       {/* Man kan kun vælge én sortering ad gangen */}
       <Text style={styles.sectionLabel}>Sort by</Text>
@@ -71,6 +81,9 @@ export default function FilterScreen({ navigation, route }) {
 
       <Pressable style={styles.primaryButton} onPress={applyFilters}>
         <Text style={styles.primaryButtonText}>Apply</Text>
+      </Pressable>
+      <Pressable style={styles.secondaryButton} onPress={resetFilters}>
+        <Text style={[styles.secondaryButtonText, styles.centerText]}>Nulstil filtre</Text>
       </Pressable>
     </ScrollView>
   );
