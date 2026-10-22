@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { View, Text, FlatList, Pressable } from 'react-native';
-import { styles } from '../styles/styles';
-import { GYMS } from '../data/gyms';
+import { View, Text, FlatList, Pressable, ActivityIndicator } from 'react-native';
+import { styles, colors } from '../styles/styles';
+import { useGyms } from '../services/gyms';
 import { useUserLocation, addDistances } from '../services/location';
 import { loadFilters, DEFAULT_FILTERS } from '../services/storage';
 
@@ -10,6 +10,8 @@ export default function HomeScreen({ navigation, route }) {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const { coords, hasLocation, permissionDenied } = useUserLocation();
   const { sortBy, selectedFacilities } = filters;
+  // Gyms hentes live fra Firebase Realtime Database.
+  const { gyms: allGyms, loading, error } = useGyms();
 
   // Når appen åbnes: hent de filtre, brugeren gemte sidst.
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function HomeScreen({ navigation, route }) {
   }, [route.params?.filters]);
 
   // Regn afstand ud fra brugerens position, behold kun gyms med alle de valgte faciliteter, og sortér.
-  const gyms = addDistances(GYMS, coords)
+  const gyms = addDistances(allGyms, coords)
     .filter((gym) => selectedFacilities.every((f) => gym.facilities.includes(f)))
     .sort((a, b) => {
       if (sortBy === 'price') return a.price - b.price;
@@ -97,7 +99,15 @@ export default function HomeScreen({ navigation, route }) {
         keyExtractor={(item) => item.id}
         renderItem={renderGym}
         style={styles.list}
-        ListEmptyComponent={<Text style={styles.emptyText}>No gyms match your filters.</Text>}
+        ListEmptyComponent={
+          loading ? (
+            <ActivityIndicator color={colors.primary} />
+          ) : (
+            <Text style={styles.emptyText}>
+              {error ? `Kunne ikke hente gyms: ${error}` : 'No gyms match your filters.'}
+            </Text>
+          )
+        }
       />
     </View>
   );

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { styles, colors } from '../styles/styles';
-import { GYMS } from '../data/gyms';
+import { useGyms } from '../services/gyms';
 import { useUserLocation, addDistances } from '../services/location';
 import { askGymAssistant } from '../services/openai';
 
@@ -32,7 +32,9 @@ export default function AiAssistantScreen({ navigation, route }) {
   const { coords } = useUserLocation();
   const headerHeight = useHeaderHeight();
 
-  const gyms = addDistances(GYMS, coords);
+  const { gyms: allGyms } = useGyms();
+
+  const gyms = addDistances(allGyms, coords);
 
   // Knap: sender spørgsmålet (og hele samtalen indtil nu) til ChatGPT og viser svaret.
   const sendMessage = async (text) => {

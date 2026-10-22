@@ -28,18 +28,34 @@ https://youtube.com/shorts/wgOe2acMoO8?feature=share
 - `services/location.js` — henter brugerens placering og regner afstande ud
 - `services/storage.js` — gemmer/henter filtervalg med AsyncStorage
 - `services/openai.js` — kald til OpenAI's API
-- `data/gyms.js` — fiktive gym-data med koordinater
+- `database/firebase.js` — opsætning af Firebase og Realtime Database
+- `services/gyms.js` — henter gyms live fra Firebase (`onValue`) og lægger startdata op, hvis databasen er tom
+- `data/gyms.js` — fiktive startdata med koordinater (uploades til Firebase første gang)
 - `styles/styles.js` — al styling samlet i én fil
 
 ## Sådan køres appen
 
+Appen kræver en `.env`-fil i projektmappen med OpenAI-nøglen og Firebase-configen:
+
+```
+EXPO_PUBLIC_OPENAI_API_KEY=
+EXPO_PUBLIC_FIREBASE_API_KEY=
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+EXPO_PUBLIC_FIREBASE_APP_ID=
+EXPO_PUBLIC_FIREBASE_DATABASE_URL=
+```
+
+Firebase-værdierne findes i Firebase-konsollen under Projektindstillinger → Dine apps → Web-app, og database-URL'en øverst på Realtime Database-siden.
+
 ```bash
 npm install
-cp .env.example .env   # indsæt jeres OpenAI-nøgle i .env
 npx expo start
 ```
 
-`.env` er i `.gitignore`, så nøglen ikke kommer med på GitHub. Bemærk: `EXPO_PUBLIC_`-variabler bliver bygget ind i appen, så i en rigtig app skulle kaldet til OpenAI gå gennem en backend.
+`.env` er i `.gitignore`, så nøglerne ikke kommer med på GitHub. Bemærk: `EXPO_PUBLIC_`-variabler bliver bygget ind i appen, så i en rigtig app skulle kaldet til OpenAI gå gennem en backend.
 
 Scan QR-koden med Expo Go (iOS/Android).
 
@@ -50,3 +66,4 @@ Scan QR-koden med Expo Go (iOS/Android).
 - AsyncStorage (lokal lagring)
 - expo-location og react-native-maps
 - OpenAI Chat Completions API (gpt-4o-mini)
+- Firebase Realtime Database (gym-data hentes live)
