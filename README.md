@@ -219,4 +219,4 @@ Hver skærmfil har en `// Ansvarlig: <navn>`-kommentar øverst.
 | Bastian | Spørg Ronnie (`screens/AskRonnieScreen.js`), Favoritter/Alarmer (`screens/FavoritesScreen.js`), Prisalarmer og push-registrering i appen (`data/priceAlerts.js`, `services/PriceAlerts.js`, `services/Notifications.js`), service-account-nøglen og adgangen til Firebase |
 
 ## Teknologi
-AI blev brugt til at planlægge appens opsætning. Vi brugte Matt Pocock's **/grill-with-docs** skill (https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md) sammen med en AI-assistent til at gennemgå planen og fastlægge begreberne i `CONTEXT.md`.
+AI blev brugt til at planlægge appens opsætning. Vi brugte Matt Pocock's **/grill-with-docs** skill (https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md) sammen med en AI-assistent til at gennemgå planen og fastlægge appens begreber.

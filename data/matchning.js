@@ -3,7 +3,7 @@
 //
 // Modulet er ren JavaScript uden afhængighed af React Native eller Expo, så det kan bruges
 // både i appen (Find, Centerdetalje, Favoritter, Ronnie) og af nat-jobbet (prisalarmer).
-// Al terminologi følger CONTEXT.md. Kode-navnene er engelske oversættelser:
+// Kode-navnene er engelske oversættelser:
 //
 //   Kæde = chain, Center = center, Tilbud = offer, Rabat = discount, Rabatgruppe = discountGroup,
 //   Rabatprofil = user.discountProfile, Ærlig årspris = honestYearlyPrice,

@@ -2,7 +2,7 @@
 // React Native, Expo eller Firebase, så den kan testes direkte og bruges af nat-jobbet, som
 // sender rigtige push-beskeder ud fra de samme regler og den samme Ærlig årspris (Matchning).
 //
-// En Prisalarm kan slås til to steder (CONTEXT.md):
+// En Prisalarm kan slås til to steder:
 //   1. På en Favorit: besked, når Favoritten falder i Ærlig årspris. Ligger på Favoritten som
 //      priceAlert (se data/favorites.js). Besparelse = gemt pris - aktuel pris.
 //   2. På Nuværende medlemskab: besked, når et Tilbud er billigere end det, brugeren betaler i

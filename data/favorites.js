@@ -2,7 +2,7 @@
 // Expo eller Firebase, så den kan testes direkte og bruges af nat-jobbet (prisfald og push).
 //
 // Prisen, der følges på en Favorit, er den laveste Ærlig årspris blandt de Tilbud, brugeren kan
-// bruge i Centret (CONTEXT.md). Den regnes med Matchning uden Filtre, ligesom på Centerdetalje,
+// bruge i Centret. Den regnes med Matchning uden Filtre, ligesom på Centerdetalje,
 // fordi Filtre kun er midlertidige krav på Find.
 //
 // I Realtime Database ligger Favoritterne under Users/<uid>/favorites med Centrets id som nøgle:
