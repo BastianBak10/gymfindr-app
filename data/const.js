@@ -315,13 +315,13 @@ export const DEFAULT_PREFERENCES = {
 };
 
 export const DEFAULT_USER = {
-  name: 'Jakob Busk',
-  address: 'Teglværksgade 16, 1. th, København Ø',
+  name: 'Testbruger',
+  address: 'Eksempelvej 1, København Ø',
   location: { latitude: 55.7088, longitude: 12.5725 },
   birthDate: '1997-03-12',
   discountProfile: ['student'],
   currentMembership: { monthlyPrice: 299, chainId: null },
-  username: 'jakobbusk',
-  email: 'jakobbusken@gmail.com',
+  username: 'testbruger',
+  email: 'test@example.dk',
   preferences: DEFAULT_PREFERENCES,
 };
