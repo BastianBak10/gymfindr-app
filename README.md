@@ -17,6 +17,8 @@ npx expo start
 3. Scan QR-koden med Expo Go-appen. Computer og telefon skal være på samme WiFi-netværk.
 
 ## Firebase
+**Ansvarlig:** Bastian (service-account-nøglen og adgangen til Firebase)
+
 Appen bruger Firebase Realtime Database til Kæder, Centre og Tilbud og Firebase Authentication til en anonym bruger. Nøglerne ligger aldrig i git.
 
 **Uden opsætning** starter appen med de håndindtastede eksempeldata fra `data/const.js` og uden login. Det samme sker, hvis databasen er tom.
@@ -101,7 +103,7 @@ Ronnie kalder OpenAI (`gpt-4o-mini`) direkte fra appen (`services/Ronnie.js`).
 **Andre steder i landet.** Spørger man om et andet sted (fx "Jeg har sommerhus i Hornbæk"), kalder Ronnie værktøjet `find_centre_naer_sted` med stednavnet (`data/ronnieLookup.js`). Appen slår stedet op med samme adresseopslag som adressefeltet (Photon eller Dataforsyningen, se Firebase-afsnittet; kræver ikke adgang til placering) og sender de op til 10 nærmeste Centre inden for 25 km, der matcher dine Filtre, med din personlige Ærlig årspris og afstanden fra stedet tilbage til Ronnie. Han svarer ud fra dem, og "Se [center] →" virker også for de fundne Centre. Kan stedet ikke findes, ligger det uden for Danmark, eller fejler opslaget, får Ronnie besked om det og siger det pænt. Opslaget huskes i samtalen, så man kan stille opfølgende spørgsmål.
 
 ## Prisalarmer og push
-**Ansvarlig:** Bastian
+**Ansvarlig:** Bastian (Prisalarmer og push-registrering i appen) og Jakob (afsendelse af push fra nat-jobbet)
 
 En Prisalarm kan slås til på hver Favorit og på Nuværende medlemskab (Favoritter-skærmen) med en valgfri tærskel i kr/md. Tærsklen er forudfyldt med 50 kr/md, og et tomt felt betyder ethvert fald. Første gang en alarm slås til, spørger appen om lov til notifikationer, henter et Expo push-token og gemmer det på brugeren. Alarmerne virker også for anonyme brugere, og Favoritter-skærmen viser en note om, at de forsvinder, hvis appen slettes.
 
@@ -214,4 +216,7 @@ Hver skærmfil har en `// Ansvarlig: <navn>`-kommentar øverst.
 |---|---|
 | Jakob | Onboarding (`screens/Onboarding/`), Profil (`screens/ProfileScreen.js`), Om os (`screens/AboutScreen.js`), Log ind (`screens/LoginScreen.js`), scraper og nat-job, afsendelse af push (`scraper/priceAlertPush.mjs`, `scraper/expoPush.mjs`) og demo-scriptet (`scraper/demoPriceDrop.mjs`) |
 | Christian | Find (`screens/FindScreen.js`), Filtre (`screens/FiltersScreen.js`), Centerdetalje (`screens/CenterDetailScreen.js`) |
-| Bastian | Spørg Ronnie (`screens/AskRonnieScreen.js`), Favoritter/Alarmer (`screens/FavoritesScreen.js`), Prisalarmer og push-registrering (`data/priceAlerts.js`, `services/PriceAlerts.js`, `services/Notifications.js`) |
+| Bastian | Spørg Ronnie (`screens/AskRonnieScreen.js`), Favoritter/Alarmer (`screens/FavoritesScreen.js`), Prisalarmer og push-registrering i appen (`data/priceAlerts.js`, `services/PriceAlerts.js`, `services/Notifications.js`), service-account-nøglen og adgangen til Firebase |
+
+## Teknologi
+AI blev brugt til at planlægge appens opsætning. Vi brugte Matt Pocock's **/grill-with-docs** skill (https://github.com/mattpocock/skills/blob/main/docs/engineering/grill-with-docs.md) sammen med en AI-assistent til at gennemgå planen og fastlægge begreberne i `CONTEXT.md`.
